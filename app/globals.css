@@ -1,26 +1,422 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Milu's palette, "Một bầu trời, hai giao diện": the same tokens as the iOS app's
+ * Palette.swift, light and dark. Change a colour there, change it here.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Surfaces */
+  --canvas: #f4f9fb;
+  --surface: #ffffff;
+  --mist: #e8f5fb;
+  --line: #d8e5eb;
+  --control: #778c95;
+
+  /* Words */
+  --ink: #142e43;
+  --ink-2: #4c687a;
+  --ink-3: #536c79;
+  --glyph: #294d60;
+
+  /* Actions */
+  --action: #145577;
+  --action-pressed: #0d405b;
+  --on-action: #ffffff;
+  --focus: #187398;
+  --selected: #dbeff7;
+
+  /* Brand */
+  --sky: #bee8fb;
+  --deep: #134767;
+  --honey: #fff0ce;
+  --apricot: #f49b76;
+
+  /* The three tab skies */
+  --garden-top: #f9eacd;
+  --pond-top: #cfe7d8;
+  --plane-top: #b8deef;
+  --cloud: #fffcf4;
+  --petal: #e9adaa;
+
+  /* Money and meaning */
+  --income: #176649;
+  --income-soft: #e2f4e9;
+  --expense: #a3303b;
+  --expense-soft: #fce8e8;
+  --caution: #795116;
+  --caution-soft: #fff0cd;
+
+  /* Savings jars */
+  --jar-mint: #9ecdad;
+  --jar-sky: #8bcbe7;
+  --jar-honey: #ebc074;
+
+  /* Data */
+  --chart-1: #134767;
+  --chart-2: #6d72f0;
+  --chart-3: #2b8cc4;
+  --chart-4: #d0458a;
+  --chart-5: #b7851a;
+  --chart-rest: #8198a6;
+
+  --float-shadow: 0 1px 2px rgb(20 46 67 / 0.06), 0 12px 32px -8px rgb(20 46 67 / 0.18);
+  --glass: rgb(255 255 255 / 0.72);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #101d25;
+  --surface: #192b35;
+  --mist: #1e3947;
+  --line: #344c58;
+  --control: #8198a6;
+
+  --ink: #f0f6f9;
+  --ink-2: #b8cad3;
+  --ink-3: #a4bbc7;
+  --glyph: #c4dce7;
+
+  --action: #9dd9f0;
+  --action-pressed: #85c5e1;
+  --on-action: #112a39;
+  --focus: #7acdeb;
+  --selected: #294b5b;
+
+  --sky: #23485b;
+  --deep: #bee8fb;
+  --honey: #473b29;
+  --apricot: #f1a389;
+
+  --garden-top: #172236;
+  --pond-top: #102b35;
+  --plane-top: #14263d;
+  --cloud: #72859b;
+  --petal: #c986a0;
+
+  --income: #91d7af;
+  --income-soft: #1e392d;
+  --expense: #ffa9ab;
+  --expense-soft: #452b32;
+  --caution: #ffd58b;
+  --caution-soft: #3c3221;
+
+  --jar-mint: #4c7f5d;
+  --jar-sky: #3c7f9e;
+  --jar-honey: #9a7433;
+
+  --chart-1: #bee8fb;
+  --chart-2: #a5a8ff;
+  --chart-3: #6cc2f0;
+  --chart-4: #f07ab4;
+  --chart-5: #e3b54a;
+  --chart-rest: #8198a6;
+
+  --float-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 36px -10px rgb(0 0 0 / 0.55);
+  --glass: rgb(25 43 53 / 0.72);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-nunito), ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  --color-control: var(--control);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-glyph: var(--glyph);
+
+  --color-action: var(--action);
+  --color-action-pressed: var(--action-pressed);
+  --color-on-action: var(--on-action);
+  --color-focus: var(--focus);
+  --color-selected: var(--selected);
+
+  --color-sky: var(--sky);
+  --color-deep: var(--deep);
+  --color-honey: var(--honey);
+  --color-apricot: var(--apricot);
+
+  --color-income: var(--income);
+  --color-income-soft: var(--income-soft);
+  --color-expense: var(--expense);
+  --color-expense-soft: var(--expense-soft);
+  --color-caution: var(--caution);
+  --color-caution-soft: var(--caution-soft);
+
+  --color-jar-mint: var(--jar-mint);
+  --color-jar-sky: var(--jar-sky);
+  --color-jar-honey: var(--jar-honey);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-rest: var(--chart-rest);
+
+  --shadow-float: var(--float-shadow);
+
+  --animate-floaty: floaty 5s ease-in-out infinite alternate;
+  --animate-sparkle: sparkle 5s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-wave: wave 2.4s linear infinite;
+  --animate-twinkle: twinkle 3.2s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--sky);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Skies ---------- */
+
+/* The colour each tab's art begins with at its top: the art sits at the foot of a stage and its sky
+   runs on above it in this colour, with no seam (as the app's headers do). */
+.sky-garden {
+  background: var(--garden-top);
+}
+.sky-pond {
+  background: var(--pond-top);
+}
+.sky-plane {
+  background: var(--plane-top);
+}
+.sky-brand {
+  background: linear-gradient(var(--sky), var(--mist));
+}
+
+/*
+ * A stage's little app screen is drawn on the app's 402-point width and scales with the stage:
+ * `--u` is one point. Sizes inside are `calc(var(--u) * n)` (see lib/u.ts).
+ */
+.stage {
+  container-type: inline-size;
+}
+.ui {
+  --u: calc(100cqw / 402);
+  font-size: calc(var(--u) * 16);
+  line-height: 1.3;
+}
+
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(1.6) blur(18px);
+  backdrop-filter: saturate(1.6) blur(18px);
+}
+
+/* The receipt's dashed rule */
+.dashed {
+  background-image: linear-gradient(to right, var(--line) 55%, transparent 0);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  height: 1px;
+}
+
+.thinking {
+  background: linear-gradient(100deg, var(--ink-3) 35%, var(--ink) 50%, var(--ink-3) 65%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  animation: marquee var(--marquee-time, 60s) linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.cloud {
+  animation: drift var(--drift-time, 90s) linear infinite;
+  animation-delay: var(--drift-delay, 0s);
+}
+
+.petal {
+  animation: petal var(--petal-time, 9s) linear infinite;
+  animation-delay: var(--petal-delay, 0s);
+}
+
+.voice-bar {
+  animation: voice 0.9s ease-in-out infinite alternate;
+  animation-delay: var(--voice-delay, 0s);
+  transform-origin: center;
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes floaty {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  88%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  91% {
+    transform: scale(1.15) rotate(-12deg);
+  }
+  95% {
+    transform: scale(1.15) rotate(8deg);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 110% 0;
+  }
+  to {
+    background-position: -110% 0;
+  }
+}
+
+@keyframes wave {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-47px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-30vw);
+  }
+  to {
+    transform: translateX(130vw);
+  }
+}
+
+@keyframes petal {
+  0% {
+    transform: translate(0, -10%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(34px, 160px) rotate(160deg);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-10px, 340px) rotate(340deg);
+    opacity: 0;
+  }
+}
+
+@keyframes voice {
+  from {
+    transform: scaleY(0.25);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Switching day and night: the new sky opens from the button. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: theme-reveal 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0%));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 0%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cloud,
+  .petal {
+    animation: none;
+  }
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
