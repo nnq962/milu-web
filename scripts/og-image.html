@@ -1,0 +1,217 @@
+<!doctype html>
+<!--
+  The picture a link to the site shows in Messenger, Zalo, iMessage and the rest
+  (public/og-image.png, 1200 × 630). Drawn here with the app's own font, colours and art,
+  then photographed by scripts/make-og-image.sh. Colours are the light ones of app/globals.css.
+-->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Milu · ảnh xem trước</title>
+    <style>
+      @font-face {
+        font-family: Nunito;
+        src: url("/app/fonts/Nunito.woff2");
+        font-weight: 200 1000;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      body {
+        position: relative;
+        font-family: Nunito, sans-serif;
+        color: #142e43;
+        background: linear-gradient(#bee8fb, #e8f5fb);
+        -webkit-font-smoothing: antialiased;
+      }
+      .cloud {
+        position: absolute;
+        fill: #fffcf4;
+      }
+
+      .brand {
+        position: absolute;
+        left: 72px;
+        top: 60px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .brand img {
+        width: 76px;
+        height: 76px;
+        border-radius: 17px;
+      }
+      .brand span {
+        font-size: 46px;
+        font-weight: 900;
+        letter-spacing: -0.01em;
+        color: #134767;
+      }
+
+      h1 {
+        position: absolute;
+        left: 72px;
+        top: 186px;
+        font-size: 76px;
+        line-height: 1.08;
+        font-weight: 900;
+        letter-spacing: -0.025em;
+        white-space: nowrap;
+      }
+      .milu {
+        position: relative;
+      }
+      .milu svg {
+        position: absolute;
+        left: 0;
+        bottom: -9px;
+        width: 92%;
+        height: 15px;
+        overflow: visible;
+      }
+      .sub {
+        position: absolute;
+        left: 72px;
+        top: 376px;
+        width: 560px;
+        font-size: 31px;
+        line-height: 1.35;
+        font-weight: 600;
+        color: #4c687a;
+      }
+      .site {
+        position: absolute;
+        left: 72px;
+        bottom: 58px;
+        font-size: 26px;
+        font-weight: 800;
+        color: #145577;
+      }
+
+      /* The garden of Tổng quan, Milu standing on its lower edge. */
+      .stage {
+        position: absolute;
+        right: 64px;
+        top: 70px;
+        width: 420px;
+        height: 491px;
+        border-radius: 48px;
+        overflow: hidden;
+        background: #f9eacd;
+        box-shadow:
+          0 1px 2px rgb(20 46 67 / 0.06),
+          0 24px 48px -12px rgb(20 46 67 / 0.25);
+      }
+      .stage .art {
+        position: absolute;
+        left: -4%;
+        bottom: -2%;
+        width: 108%;
+      }
+      .stage .face {
+        position: absolute;
+        right: 3%;
+        bottom: -5px;
+        width: 76%;
+      }
+      .bubble {
+        position: absolute;
+        right: 20px;
+        top: 282px;
+        padding: 10px 17px;
+        border-radius: 20px 20px 20px 6px;
+        background: #fff;
+        font-size: 19px;
+        font-weight: 800;
+        box-shadow: 0 10px 24px -8px rgb(20 46 67 / 0.25);
+      }
+
+      .chip {
+        position: absolute;
+        left: 652px;
+        top: 104px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 18px 12px 12px;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow:
+          0 1px 2px rgb(20 46 67 / 0.06),
+          0 14px 32px -8px rgb(20 46 67 / 0.22);
+      }
+      .chip img {
+        width: 42px;
+        height: 42px;
+      }
+      .chip b {
+        display: block;
+        font-size: 19px;
+        font-weight: 800;
+      }
+      .chip small {
+        display: block;
+        font-size: 15px;
+        font-weight: 600;
+        color: #4c687a;
+      }
+      .chip strong {
+        margin-left: 10px;
+        font-size: 19px;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="cloud" style="left: 470px; top: 54px; width: 150px" viewBox="-17 98 67 25">
+      <path d="M-17 119.26C-17 112.62 -11.19 108.47 -3.72 109.3C-1.23 101 10.39 98.51 16.2 105.98C23.67 102.66 31.14 107.64 31.14 113.45C38.61 110.96 46.91 114.28 49.4 120.09C29.48 122.58 1.26 122.58 -17 120.92V119.26Z" />
+    </svg>
+    <svg class="cloud" style="left: -40px; top: 500px; width: 210px; opacity: 0.85" viewBox="-17 98 67 25">
+      <path d="M-17 119.26C-17 112.62 -11.19 108.47 -3.72 109.3C-1.23 101 10.39 98.51 16.2 105.98C23.67 102.66 31.14 107.64 31.14 113.45C38.61 110.96 46.91 114.28 49.4 120.09C29.48 122.58 1.26 122.58 -17 120.92V119.26Z" />
+    </svg>
+    <svg class="cloud" style="left: 520px; top: 536px; width: 120px; opacity: 0.8" viewBox="-17 98 67 25">
+      <path d="M-17 119.26C-17 112.62 -11.19 108.47 -3.72 109.3C-1.23 101 10.39 98.51 16.2 105.98C23.67 102.66 31.14 107.64 31.14 113.45C38.61 110.96 46.91 114.28 49.4 120.09C29.48 122.58 1.26 122.58 -17 120.92V119.26Z" />
+    </svg>
+
+    <div class="brand">
+      <img src="/public/milu/app-icon-light.png" alt="" />
+      <span>Milu</span>
+    </div>
+
+    <h1>
+      Bạn cứ vi vu,<br />chi thu có
+      <span class="milu"
+        >Milu.<svg viewBox="0 0 200 18" preserveAspectRatio="none">
+          <path
+            d="M4 12 C 40 2, 70 16, 104 8 S 168 4, 196 10"
+            fill="none"
+            stroke="#f49b76"
+            stroke-width="7"
+            stroke-linecap="round"
+          /></svg
+      ></span>
+    </h1>
+    <p class="sub">App quản lý tài chính cá nhân cho iPhone. Ghi một chạm, hoặc chỉ cần nói.</p>
+    <p class="site">milu.nnqlab.dev</p>
+
+    <div class="stage">
+      <img class="art" src="/public/milu/sky/tong-quan-light.svg" alt="" />
+      <p class="bubble">Gâu! Chào bạn nha</p>
+      <img class="face" src="/public/milu/faces/nguyen-ban.svg" alt="" />
+    </div>
+
+    <div class="chip">
+      <img src="/public/milu/emoji/2615.svg" alt="" />
+      <span><b>Cà phê</b><small>Vừa ghi bằng giọng nói</small></span>
+      <strong>−35.000đ</strong>
+    </div>
+  </body>
+</html>

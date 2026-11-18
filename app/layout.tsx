@@ -2,12 +2,13 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { MotionProvider } from "@/components/motion";
 import { themeScript } from "@/components/theme";
-import { site } from "@/lib/site";
+import { openGraph, site } from "@/lib/site";
 import "./globals.css";
 
-// Nunito, the app's typeface (variable, with Vietnamese; OFL): the same file the app ships.
+// Nunito, the app's typeface (variable, with Vietnamese; OFL): the file the app ships, packed
+// as WOFF2 by scripts/sync-assets.sh.
 const nunito = localFont({
-  src: "./fonts/Nunito.ttf",
+  src: "./fonts/Nunito.woff2",
   variable: "--font-nunito",
   weight: "200 1000",
   display: "swap",
@@ -16,17 +17,13 @@ const nunito = localFont({
 const title = `${site.name} · ${site.tagline}`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: { default: title, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
   keywords: ["Milu", "quản lý chi tiêu", "tài chính cá nhân", "ghi thu chi", "hũ tiết kiệm", "app iPhone"],
-  openGraph: {
-    type: "website",
-    locale: "vi_VN",
-    siteName: site.name,
-    title,
-    description: site.description,
-  },
+  openGraph: { ...openGraph, title, description: site.description },
+  twitter: { card: "summary_large_image" },
   appleWebApp: { title: site.name },
   formatDetection: { telephone: false },
 };

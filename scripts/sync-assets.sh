@@ -9,8 +9,15 @@ DST="$2"
 mkdir -p "$DST/app/fonts" "$DST/public/milu/sky" "$DST/public/milu/faces" "$DST/public/milu/rive" \
   "$DST/public/milu/emoji" "$DST/public/rive"
 
-# Font (OFL)
-cp "$SRC/Milu/Resources/Fonts/Nunito.ttf" "$DST/app/fonts/Nunito.ttf"
+# Font (OFL): the app's variable TTF, packed as WOFF2 for the web (same glyphs and weights, about
+# a third of the size). Needs Python's fontTools and brotli (pip install fonttools brotli);
+# without them the WOFF2 already in the project is kept.
+if python3 -c "import fontTools, brotli" 2>/dev/null; then
+  python3 -c "import sys; from fontTools.ttLib import woff2; woff2.compress(sys.argv[1], sys.argv[2])" \
+    "$SRC/Milu/Resources/Fonts/Nunito.ttf" "$DST/app/fonts/Nunito.woff2"
+else
+  echo "fontTools or brotli is missing: kept app/fonts/Nunito.woff2 as it is" >&2
+fi
 cp "$SRC/Milu/Resources/Fonts/OFL.txt" "$DST/app/fonts/Nunito-OFL.txt"
 
 # The three tab skies, day and night
@@ -47,6 +54,15 @@ sips -s format png -z 512 512 "$ICON/milu-icon-light.png" --out "$DST/app/icon.p
 sips -s format png -z 180 180 "$ICON/milu-icon-light.png" --out "$DST/app/apple-icon.png" >/dev/null
 sips -s format png -z 384 384 "$ICON/milu-icon-light.png" --out "$DST/public/milu/app-icon-light.png" >/dev/null
 sips -s format png -z 384 384 "$ICON/milu-icon-dark.png" --out "$DST/public/milu/app-icon-dark.png" >/dev/null
+
+# favicon.ico, for the tools that still ask for that file: the icon at 16, 32 and 48 pixels in
+# one .ico (scripts/make-favicon.py packs them)
+ICO_PARTS="$(mktemp -d)"
+for size in 16 32 48; do
+  sips -s format png -z "$size" "$size" "$ICON/milu-icon-light.png" --out "$ICO_PARTS/$size.png" >/dev/null
+done
+python3 "$(dirname "$0")/make-favicon.py" "$ICO_PARTS" "$DST/app/favicon.ico"
+rm -rf "$ICO_PARTS"
 
 echo "faces: $(ls "$DST/public/milu/faces" | wc -l)  emoji: $(ls "$DST/public/milu/emoji" | wc -l)"
 du -sh "$DST/public/milu" "$DST/public/rive" "$DST/app/fonts"

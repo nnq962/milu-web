@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
+
 /**
  * What the page says about Milu, in one place. The numbers follow the iOS app
  * (AIQuota.swift, Milu.storekit, LegalDocument.swift): when they change there, change them here.
  */
 export const site = {
   name: "Milu",
+  /** Where the site lives: link previews and canonical addresses are built on it. */
+  url: "https://milu.nnqlab.dev",
   tagline: "Bạn cứ vi vu, chi thu có Milu.",
   description:
     "Milu là app quản lý tài chính cá nhân cho iPhone: ghi thu chi một chạm hoặc bằng giọng nói, hũ tiết kiệm, vay nợ, báo cáo và trợ lý AI hiểu tiếng Việt.",
@@ -24,6 +28,25 @@ export const site = {
   /** Milu Pro's prices in đồng (Milu.storekit). */
   pro: { monthly: 49_000, yearly: 399_000 },
 } as const;
+
+/**
+ * What a shared link says about the site (Open Graph), the same on every page; a page adds its own
+ * title, description and address. The picture is public/og-image.png for all of them
+ * (scripts/make-og-image.sh draws it).
+ */
+export const openGraph: NonNullable<Metadata["openGraph"]> = {
+  type: "website",
+  locale: "vi_VN",
+  siteName: site.name,
+  images: [
+    {
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Milu: Bạn cứ vi vu, chi thu có Milu. App quản lý tài chính cá nhân cho iPhone.",
+    },
+  ],
+};
 
 export const nav = [
   { href: "/#tinh-nang", label: "Tính năng" },

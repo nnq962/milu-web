@@ -36,6 +36,7 @@ export function SiteFooter() {
               {site.supportEmail}
             </a>
           </li>
+          <FooterLink href="/ho-tro">Hỗ trợ</FooterLink>
           <FooterLink href="/#tai-ve">Tải Milu</FooterLink>
         </Column>
       </div>
